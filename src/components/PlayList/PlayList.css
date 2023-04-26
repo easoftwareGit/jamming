@@ -1,0 +1,11 @@
+.PlayListHeader {
+  display: flex;
+}
+
+.PlayListName {
+  flex-grow: 1;
+}
+
+.SaveButton {
+  width: 100px;
+}

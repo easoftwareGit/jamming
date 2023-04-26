@@ -1,11 +1,20 @@
 .PlayListHeader {
-  display: flex;
+  display: flex; 
+  align-items: center; 
+  height: 3em;
+  
+  background-color: darkorange;
 }
 
 .PlayListName {
   flex-grow: 1;
+  font-size: 1.5em;
+  border-radius: .33em;
 }
 
-.SaveButton {
-  width: 100px;
+.SaveButton {    
+  width: 3em;
+  font-size: 1.5em;
+  border-radius: 0.33em;
+  margin-left: 0.25em;
 }

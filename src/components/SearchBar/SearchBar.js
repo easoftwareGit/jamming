@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import React from "react";
+import './SearchBar.css';
 
 export default function SearchBar({ searchText, onSearchTextChange }) {
 
   return (
-    <form>
+    <form className="SearchBar">
       <input 
         type='text'
         value={searchText}
-        placeholder='Search...'        
+        placeholder='Search...'
+        className="SearchText"  
       >
       </input>
-      <button>
+      <button className="SearchButton">
         Search
       </button>
     </form>

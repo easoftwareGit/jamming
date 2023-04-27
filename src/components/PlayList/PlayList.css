@@ -9,7 +9,7 @@
 .PlayListName {
   flex-grow: 1;
   font-size: 1.5em;
-  border-radius: .33em;
+  border-radius: 0.33em;  
 }
 
 .SaveButton {    

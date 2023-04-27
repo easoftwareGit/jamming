@@ -1,0 +1,10 @@
+.TrackInfo {
+  height: 3.75em;  
+  border-bottom: 2px solid white;
+}
+
+.TrackName {  
+  font-size: 1.25em;
+  font-weight: bold; 
+  line-height: 1.5em;
+}

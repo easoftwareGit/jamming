@@ -23,7 +23,7 @@ const testData = [
   }
 ];
 
-export default function TrackList(props) {
+export default function TrackListTest() {
   return (    
     <div className="TrackList">
       {testData.map((track) => {
@@ -37,3 +37,13 @@ export default function TrackList(props) {
     </div>
   );
 }
+
+// export default function TrackListTest() {
+//   return (    
+//     <div className="TrackList">
+//       <TrackTest />
+//       <TrackTest />
+//       <TrackTest />
+//     </div>
+//   )
+// }

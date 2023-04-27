@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import React from "react";
 
-export default function Track() {
+import './Track.css';
+
+export default function Track(props) {
   return (
-    <div>
-      <h3>Track Name</h3>
-      Artist
+    <div className="Track">
+      <div className="TrackInfo">
+        <div className="TrackName">
+          {props.track.name}          
+        </div>
+        <div>
+          {props.track.artist}
+        </div>
+      </div>
     </div>
   );
 }

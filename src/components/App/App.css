@@ -6,14 +6,19 @@
   color: #fff;
 }
 
-.App-logo {
-  /* height: 40vmin; */
-  height: 20px;
-  pointer-events: none;
+.AppTitle {
+  font-size: 2em;
+  font-weight: bold;  
 }
 
-.App-header {
-  color: #fff;
+.poweredBy {
+  line-height: 2em;
+}
+
+.AppLogo {
+  /* height: 40vmin; */
+  height: 20px;
+  pointer-events: none;    
 }
 
 .AppInfo {

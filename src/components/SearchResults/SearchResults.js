@@ -5,33 +5,16 @@ import "./SearchResults.css";
 import TrackListContainer from '../TrackList/TrackListContainer';
 import SearchHeader from './SearchResultsHeader';
 
-const testSearchResults = [
-  {
-    id: 4,    
-    name: 'Dance the Night Away',
-    artist: 'Van Halen',
-    album: "Van Halen II"
-  },
-  {
-    id: 5,    
-    name: 'Little Guitars',
-    artist: 'Van Halen',
-    album: "Diver Down"
-  },
-  {
-    id: 6,    
-    name: 'Jump',
-    artist: 'Van Halen',
-    album: "1984"
-  }
-];
 
+export default function SearchResults(props) {
 
-export default function SearchResults() {
   return (
     <div className='AppList SearchResults' >
-      <TrackListContainer         
+      <TrackListContainer
+        tracks={props.tracks}    
         headerObj={<SearchHeader />}
+        addToPlayList={true}
+        onAdd={props.onAdd}
       />
     </div>
   );

@@ -2,13 +2,18 @@ import React from "react";
 
 import TrackListHeader from "./TrackListHeader";
 import TrackList from "./TrackList";
-// import TrackListTest from "./TrackListTest";
 
-export default function TrackListContainer({headerObj}) {    
+export default function TrackListContainer(props) {  
+  
   return (
     <div className="TrackListContainer">  
-      <TrackListHeader headerObj={headerObj}/>
-      <TrackList />        
+      <TrackListHeader headerObj={props.headerObj}/>
+      <TrackList 
+        tracks={props.tracks}
+        addToPlayList={props.addToPlayList}
+        onRemove={props.onRemove}
+        onAdd={props.onAdd}
+      />        
     </div>
   )
 }

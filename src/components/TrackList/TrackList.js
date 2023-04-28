@@ -2,35 +2,18 @@ import React from "react";
 
 import Track from "../Track/Track";
 
-const testData = [
-  {
-    id: 4,    
-    name: 'Dance the Night Away',
-    artist: 'Van Halen',
-    album: "Van Halen II"
-  },
-  {
-    id: 5,    
-    name: 'Little Guitars',
-    artist: 'Van Halen',
-    album: "Diver Down"
-  },
-  {
-    id: 6,    
-    name: 'Jump',
-    artist: 'Van Halen',
-    album: "1984"
-  }
-];
-
-export default function TrackList(props) {
-  return (    
-    <div className="TrackList">
-      {testData.map((track) => {
+export default function TrackList(props) {  
+ 
+  return (        
+    <div className="TrackList">      
+      {props.tracks.map((track) => {
         return (
           <Track 
             track={track}
             key={track.id}
+            addToPlayList={props.addToPlayList}
+            onRemove={props.onRemove}
+            onAdd={props.onAdd}
           />
         );
       })}

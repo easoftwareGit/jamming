@@ -1,13 +1,8 @@
-.SearchResults {
-  border-right: 10px;  
-}
-
-.SearchResultsHeader {
-  height: 100%;
+.SearchResultsHeader {  
+  height: 2em;
   font-size: 1.5em;
   font-weight: bold;
-  line-height: 1.9em;  
-  padding-left: 5px;
+  line-height: 1.9em;
 
   background-color: darkblue;
 }

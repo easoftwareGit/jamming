@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SearchResultsHeader() {
   return (
-    <div className="SearchResultsHeader">
+    <div className="AppListHeader SearchResultsHeader">
       Search Results
     </div>
   );

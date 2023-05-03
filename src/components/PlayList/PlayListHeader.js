@@ -7,7 +7,7 @@ export default function PlayListHeader(props) {
   }
 
   return (
-    <div className="AppListHeader PlayListHeader">
+    <div className="AppListHeader PlayListHeader">      
       <input 
         type='text'
         placeholder="Playlist Name..."
@@ -21,7 +21,7 @@ export default function PlayListHeader(props) {
         onClick={props.onSave}
       >
         Save
-      </button>      
+      </button>            
     </div>
   );
 }

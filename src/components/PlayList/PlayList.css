@@ -1,9 +1,8 @@
 .PlayListHeader {
   display: flex; 
-  align-items: center; 
-  /* height: 3em; */
+  align-items: center;   
   
-  background-color: darkorange;
+  /* background-color: darkorange; */
 }
 
 .PlayListName {

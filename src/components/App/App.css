@@ -21,8 +21,7 @@
   line-height: 2em;
 }
 
-.AppLogo {
-  /* height: 40vmin; */
+.AppLogo {  
   height: 20px;
   pointer-events: none;    
 }
@@ -44,10 +43,6 @@
   text-align: left;
   align-items: start;
   width: 400px;
-  height: 800px;
-  margin: 10px;  
-}
-
-.App-link {
-  color: #61dafb;
+  height: 800px;  
+  margin: 10px 5px;  
 }

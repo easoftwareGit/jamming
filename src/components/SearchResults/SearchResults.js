@@ -7,7 +7,7 @@ import TrackList from "../TrackList/TrackList";
 
 export default function SearchResults(props) {
 
-  return (
+  return (    
     <div className='AppList SearchResults' >
       <SearchHeader />
       <TrackList 

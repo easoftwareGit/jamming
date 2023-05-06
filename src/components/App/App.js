@@ -1,10 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import AppHeader from './AppHeader';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../PlayList/PlayList';
+import PlaylistList from '../PlaylistList/PlaylistList';
 import Spotify from '../../util/Spotify';
 
 // const testPlayList = [
@@ -27,7 +28,6 @@ import Spotify from '../../util/Spotify';
 //     album: "Back in Black"
 //   }
 // ];
-
 // const testSearchResults = [
 //   {
 //     id: 4,    
@@ -48,25 +48,43 @@ import Spotify from '../../util/Spotify';
 //     album: "1984"
 //   }
 // ];
+// const testPlaylistList = [
+//   {
+//     id: 7,
+//     name: 'List # 7'
+//   },
+//   {
+//     id: 8,
+//     name: 'List # 8'
+//   },
+//   {
+//     id: 9,
+//     name: 'List # 9'
+//   }
+// ];
 
 function App() {
+  const newPlayListName = 'New Playlist'
 
-  // const [searchResults, setSearchResults] = useState(testSearchResults);
-  // const [playListTracks, setPlayListTracks] = useState(testPlayList);
   const [searchResults, setSearchResults] = useState([]);
   const [playListTracks, setPlayListTracks] = useState([]);
-  const [playListName, setPlayListName] = useState("New Playlist");
+  const [playListName, setPlayListName] = useState(newPlayListName);
+  const [playlistList, setPlaylistList] = useState([]);  
+  const [playListId, setPlayListId] = useState('');
+  
+  const [userName, setUserName] = useState('Your Name Here');
 
   function Search(term) {
-    Spotify.search(term).then(setSearchResults);
+    Spotify.search(term).then((results) => {
+      setSearchResults(results);
+    });
   }
 
   function AddTrack(track) {
     if (playListTracks.find(trackToFind => trackToFind.id === track.id)) {      
       return;
     }
-    setPlayListTracks((prevTracks) => [...prevTracks, track]);
-    console.log(`playListTracks length = ${playListTracks.length}`);
+    setPlayListTracks((prevTracks) => [...prevTracks, track]);    
   }
 
   function RemoveTrack(track) {
@@ -77,35 +95,82 @@ function App() {
 
   function SavePlaylist() {
     const trackURIs = playListTracks.map((track) => track.uri);
-    Spotify.savePlaylist(playListName, trackURIs) 
-    .then(() => {
-      setPlayListName("New Playlist");
-      setPlayListTracks([]);
-    });
-    
+    // if a new playlist, save it and then update PlaylistLists
+    if (!playListId || playListId.length === 0) {
+      Spotify.saveNewPlaylist(playListName, trackURIs) 
+      .then((results) => {
+        GetUserPlayLists();       
+      });        
+    } else {
+      // else editing a playlist
+      // 1) change the plalist name
+      // 2) delete tracks on spotify
+      // 3) add all current to spotify
+      // 4) update PlaylistLists
+      Spotify.changePlayListDetails(playListId, playListName)
+      .then(() => Spotify.deletePlaylistItems(playListId, trackURIs))
+      .then(() => Spotify.updatePlaylistItems(playListId, trackURIs))
+      .then(() => GetUserPlayLists());
+    }
   }
 
   function UpdatePlayListName(name) {
     setPlayListName(name);
   }
 
+  function GetUserPlayLists() {
+    Spotify.getUserPlaylists().then((userPlayLists) => {
+      setPlaylistList(userPlayLists);
+      setUserName(Spotify.getCurrentUserDisplayName());      
+    });
+  }
+
+  function GetPlayListTracks(id, name)  {
+    Spotify.getPlayListTracks(id).then((playListTracks) => {
+      setPlayListTracks(playListTracks);
+      if (!playListTracks) {
+        setPlayListName('');
+      } else {
+        setPlayListId(id);
+        setPlayListName(name);
+      }      
+    });
+  }
+
+  function NewPlayList() {
+    setPlayListId('');
+    setPlayListName(newPlayListName);
+    setPlayListTracks([]);
+  }
+
+  // simulate componentDidMount
+  useEffect(() => {
+    GetUserPlayLists();
+  }, []);
+
   return (    
     <div className="App">
       <AppHeader />
-      <SearchBar onSearch={Search}/>
+      <SearchBar onSearch={Search}/>      
       <div className='AppInfo'>
-        <SearchResults 
-          className='AppList'
+        <SearchResults           
           tracks={searchResults}
           onAdd={AddTrack}
+          plId={playListId}
         />        
-        <Playlist 
-          className='AppList'
+        <Playlist           
           playListName={playListName}
           tracks={playListTracks}
           onRemove={RemoveTrack} 
           onNameChange={UpdatePlayListName}
           onSave={SavePlaylist}
+        />
+        <PlaylistList 
+          className='AppList'
+          playlistList={playlistList}          
+          userName={userName}
+          onGetTracks={GetPlayListTracks}
+          onNewPlaylist={NewPlayList}          
         />
       </div>
     </div>   

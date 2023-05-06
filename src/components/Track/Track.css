@@ -2,19 +2,30 @@
   display: flex;
   height: 3.75em;  
   border-bottom: 2px solid white; 
+  overflow: hidden;
 }
 
 .TrackInfo {
   flex-grow: 1;
-
-  background-color: darkslateblue;
 }
 
 .TrackName {  
   font-size: 1.25em;
   font-weight: bold; 
   line-height: 1.5em;
+  height: 1.5em;
+  width: 350px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  /* background-color: rgb(62, 1, 88); */
 }
+
+/* .TrackArtist {
+
+  background-color: brown;
+} */
 
 .TrackButton {
   cursor: pointer;
@@ -25,7 +36,8 @@
   border-radius: 0.33em;
   margin-top: 0.4em;
   margin-left: 0.25em;  
-  background-color: darkcyan;  
+
+  /* background-color: darkcyan;   */
 }
 
 #AddTrack {

@@ -42,7 +42,7 @@ export default function Track(props) {
         <div className="TrackName">
           {props.track.name}          
         </div>
-        <div>
+        <div className="TrackArtist">
           {props.track.artist}
         </div>
       </div>

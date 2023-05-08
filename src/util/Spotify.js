@@ -88,10 +88,12 @@ const Spotify = {
     const accessToken = Spotify.getAccessToken();
     const headers = {
       Authorization: `Bearer ${accessToken}`
-    }
+    };
+    // use Promise.resolve to "await" the return value from getCurrentUserId()
+    // getCurrentUserId() uses fetch(), so getCurrentUserId() needs to "await" the return value
     return Promise.resolve(Spotify.getCurrentUserId())
-    .then((response) => {
-      userId = response;
+    .then((value) => {
+      userId = value;
       const userPlUri = baseURI + `/users/${userId}/playlists`;
       return fetch(userPlUri, {
         headers: headers,
@@ -149,9 +151,10 @@ const Spotify = {
     const headers = {
       Authorization: `Bearer ${accessToken}`
     }
+    // see comments in saveNewPlaylist
     return Promise.resolve(Spotify.getCurrentUserId())
-    .then((response) => {
-      userId = response;
+    .then((value) => {
+      userId = value;
       const userPlUri = baseURI + `/users/${userId}/playlists`;
       return fetch(userPlUri, {
         headers: headers,
